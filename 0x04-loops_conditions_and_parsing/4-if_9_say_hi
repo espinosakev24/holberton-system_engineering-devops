@@ -9,5 +9,5 @@ do
 			printf "hi\n"
 		fi
 	printf "Holberton School\n"
-	x=$(( $x + 1 ))
+	x=$(( x + 1 ))
 done

@@ -5,5 +5,5 @@ x=1
 until [ $x -gt 10 ]
 do
 	printf "Holberton School\n"
-	x=$(( $x + 1 ))
+	x=$(( x + 1 ))
 done

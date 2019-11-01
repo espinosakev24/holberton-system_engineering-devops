@@ -3,6 +3,6 @@
 
 for n in * ;
 do
-	echo $n | cut --delimiter='-' -f2
+	echo "$n" | cut --delimiter='-' -f2
 done
 

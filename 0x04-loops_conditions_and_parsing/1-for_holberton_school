@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #Printing 10 times "Holberton School" string
 
-for i in {1..10};
+for _ in {1..10};
 do
 	printf 'Holberton School\n'
 done
