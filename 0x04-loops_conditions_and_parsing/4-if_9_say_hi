@@ -6,7 +6,7 @@ while [ $n -lt 10 ]
 do
 	if [ $n -eq 9 ] ;
 	then
-		printf "hi\n"
+		printf "Hi\n"
 	fi
 	printf "Holberton School\n"
 	n=$(( n + 1 ))
