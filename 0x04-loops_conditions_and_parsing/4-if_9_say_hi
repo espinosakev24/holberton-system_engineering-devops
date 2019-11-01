@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #Implementing if statment
 
-x=1
+x=0
 while [ $x -lt 10 ]
 do
-	if [ $x = 9 ] ;
+	if [ $x -eq 9 ] ;
 		then
 			printf "hi\n"
 		fi
