@@ -6,8 +6,8 @@ while [ $x -lt 10 ]
 do
 	if [ $x -eq 9 ] ;
 		then
-			printf "hi\n"
+			echo "hi"
 		fi
-	printf "Holberton School\n"
+	echo "Holberton School"
 	x=$(( x + 1 ))
 done
