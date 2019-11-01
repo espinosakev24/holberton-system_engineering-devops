@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#Printing holberton school 10 times with While loop
+x=0
+while [ $x -lt 10 ]
+do
+	printf "Holberton School\n"
+	x=$(( $x + 1 ))
+done

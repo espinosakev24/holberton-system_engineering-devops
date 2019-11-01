@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#Implementing if statment
+
+x=1
+while [ $x -lt 10 ]
+do
+	if [ $x = 9 ] ;
+		then
+			printf "hi\n"
+		fi
+	printf "Holberton School\n"
+	x=$(( $x + 1 ))
+done

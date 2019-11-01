@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#Printing with until statment
+
+x=1
+until [ $x -gt 10 ]
+do
+	printf "Holberton School\n"
+	x=$(( $x + 1 ))
+done
