@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# printing infinitely
+n=1
+trap "echo I am invincible!!!" SIGTERM
+while [ $n -lt 3 ] ;
+do
+	echo "To infinity and beyond"
+	sleep 2
+done
+

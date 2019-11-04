@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# scrpits that kills 7-highlander file
+pgrep -f 7-highlander | xargs kill -9
+
