@@ -1,3 +1,4 @@
+# Creating a file with puppet
 file {'holberton':
 path    => '/tmp/holberton',
 mode    => '0744',
