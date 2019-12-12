@@ -1,15 +1,10 @@
 #!/usr/bin/env bash
 # script that creates a redirect
-SRV='server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
-	server_name espikev.tech;
-	root /var/www/html;
-	index index.html;
-	location = /redirect_me {
-		return 301 https://www.youtube.com/watch?v=wpV-gGA4PSk;
-	}
-}'
+sudo apt-get update -y
+sudo apt-get install -y nginx 
 
-echo "$SRV" | sudo tee /etc/nginx/sites-enabled/default
-sudo /etc/init.d/nginx restart;
+redirection="\tlocation = /redirect_me{\n\t\treturn 301 https://www.youtube.com/watch?v=wpV-gGA4PSk;\t\n\t}"
+sudo sed -i "71i\\$redirection" /etc/nginx/sites-enabled/default
+
+sudo /etc/init.d/nginx stop
+sudo /etc/init.d/nginx start 
