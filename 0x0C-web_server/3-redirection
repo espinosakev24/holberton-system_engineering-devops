@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# commentary
-SRV='server {\n
-		listen 80;\n
-		listen [::]:80;\n
-		server_name espikev.tech;\n
-		root /var/www/html;\n
-		index index.html;\n
-		location /redirect_me {\n
-			https://www.youtube.com/watch?v=wpV-gGA4PSk\n
-		}\n
-	}\n'
+# script that creates a redirect
+SRV='server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	server_name espikev.tech;
+	root /var/www/html;
+	index index.html;
+	location = /redirect_me {
+		return 301 https://www.youtube.com/watch?v=wpV-gGA4PSk;
+	}
+}'
 
 echo "$SRV" | sudo tee /etc/nginx/sites-enabled/default
-sudo /etc/init.d/nginx restart
+sudo /etc/init.d/nginx restart;
