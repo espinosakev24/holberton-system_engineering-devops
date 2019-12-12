@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
-# script that creates a redirect
+# commentary
 sudo apt-get update -y
-sudo apt-get install -y nginx 
+sudo apt-get install -y nginx curl
+sudo touch /var/www/html/index.html
+echo "Holberton School" | sudo tee /var/www/html/index.html
 
-redirection="\tlocation = /redirect_me{\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\t\n\t}"
-sed -i "71i\\$redirection" /etc/nginx/sites-enabled/default
+sudo curl -s "https://gist.githubusercontent.com/xameeramir/a5cb675fb6a6a64098365e89a239541d/raw/4593b40a770bc8e3390146f7b0d9a3e9c1dafe62/default%2520nginx%2520configuration%2520file" -o /etc/nginx/sites-enabled/default
 
-service nginx restart
+redirection="rewrite ^/redirect_me$ https://www.youtube.com/watch?v=CWgRKP1ejOE permanent"
+sudo sed -i "72i\\$redirection" /etc/nginx/sites-enabled/default
+
+sudo service nginx syart
