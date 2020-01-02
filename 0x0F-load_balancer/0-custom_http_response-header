@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+sudo sed -i -e 's/^server {$/server {\n\tadd_header X-Served-By $HOSTNAME/g' /etc/nginx/sites-available/default
