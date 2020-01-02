@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 sudo apt-get update -y
-sudo apt-get install -y nginx curl
-sudo sed -i -e 's/^server {$/server {\n\tadd_header X-Served-By $HOSTNAME/g' /etc/nginx/sites-available/default
-service nginx restart
+sudo apt-get install -y nginx
+sudo sed -i -e "s/^server {$/server {\n\tadd_header X-Served-By $HOSTNAME;/g" /etc/nginx/sites-available/default
+sudo service nginx restart
