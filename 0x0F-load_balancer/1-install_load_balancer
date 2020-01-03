@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Making the load balancing
+apt-get install software-properties-common -y
+add-apt-repository ppa:vbernat/haproxy-1.8 -y
+apt-get update -y
+apt-get install haproxy=1.8.\* -y
+echo "backend web-backend
+   balance roundrobin
+   server 916-web-01 ubuntu@35.231.241.219:80 check
+   server 916-web-02 ubuntu@35.231.198.253:80 check
+
+frontend http
+  bind *:80
+  mode http
+  default_backend web-backend" >> /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
