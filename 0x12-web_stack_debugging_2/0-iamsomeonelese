@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # whoami of the user passed as an argument
-adduser --disabled-password --gecos --no-create-home --quiet $1 2>/dev/null
-echo $(whoami) $1 | awk -F ' ' '{print $2}'
+adduser --disabled-password --gecos --no-create-home --quiet "$1" 2>/dev/null
+echo "$(whoami)" "$1" | awk -F ' ' '{print $2}'
