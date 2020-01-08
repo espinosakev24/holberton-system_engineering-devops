@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Prints information about the domain
+if [ $# -eq 1 ]
+then
+    wwwA=$(dig www.${1} | awk '/ANSWER SECTION:/ {getline; print $4}')
+    wwwIp=$(dig www.${1} | awk '/ANSWER SECTION:/ {getline; print $5}')
+    lbA=$(dig lb-01.${1} | awk '/ANSWER SECTION:/ {getline; print $4}')
+    lbIp=$(dig lb-01.${1} | awk '/ANSWER SECTION:/ {getline; print $5}')
+    web1A=$(dig web-01.${1} | awk '/ANSWER SECTION:/ {getline; print $4}')
+    web1Ip=$(dig web-01.${1} | awk '/ANSWER SECTION:/ {getline; print $5}')
+    web2A=$(dig web-02.${1} | awk '/ANSWER SECTION:/ {getline; print $4}')
+    web2Ip=$(dig web-02.${1} | awk '/ANSWER SECTION:/ {getline; print $5}')
+    echo The subdomain www is a $wwwA record and points to $wwwIp
+    echo The subdomain lb-01 is a $lbA record and points to $lbIp
+    echo The subdomain web-01 is a $web1A record and points to $web1Ip
+    echo The subdomain web-02 is a $web2A record and points to $web2Ip
+fi
+if [ $# -eq 2 ]
+then
+    getArecordField () {
+        dig ${2}.${1} | awk '/ANSWER SECTION:/ {getline; print $4}'
+    }
+    getIpField () {
+        dig ${2}.${1} | awk '/ANSWER SECTION:/ {getline; print $5}'
+    }
+   echo The subdomain "$2" is a $(getArecordField "$1" "$2")  record and points to $(getIpField "$1" "$2")
+fi
+
+
