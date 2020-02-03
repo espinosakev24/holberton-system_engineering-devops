@@ -18,12 +18,12 @@ if __name__ == '__main__':
         task_user = requests.get(URL_TODO + '?userId=' + str(idx)).json()
         userResponse = requests.get(URL_USERS + str(idx)).json()
         for task in task_user:
-            records.append({"task": task['title'], "completed":
-                            task['completed'],
-                            "username": userResponse['username']})
+            records.append({"task": task.get('title'), "completed":
+                            task.get('completed'),
+                            "username": userResponse.get('username')})
         user_dict.update({str(idx): records})
         idx += 1
 
     filename = "todo_all_employees.json"
     with open(filename, 'w', encoding="utf-8") as jsonfile:
-        jsonfile.write(json.dumps(user_dict))
+        json.dump(user_dict, jsonfile)
