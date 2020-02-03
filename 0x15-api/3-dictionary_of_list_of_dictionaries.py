@@ -1,7 +1,8 @@
 #!/usr/bin/python3
+"""dict list of dicts """
+import json
 import requests
 from sys import argv
-import json
 
 if __name__ == '__main__':
     URL = 'https://jsonplaceholder.typicode.com/'
