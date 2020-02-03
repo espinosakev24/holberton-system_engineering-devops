@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+import json
 import requests
 from sys import argv
-import json
 
 if __name__ == '__main__':
     URL = 'https://jsonplaceholder.typicode.com/'
@@ -15,17 +15,17 @@ if __name__ == '__main__':
     user = requests.get(URL_USERS + str(user_id)).json()
 
     for task in todos:
-        if task['userId'] == user_id:
+        if task.get('userId') == user_id:
             total += 1
-            if task['completed']:
+            if task.get('completed'):
                 tasks_done.append(task['title'])
                 done += 1
 
     for task in todos:
         if task['userId'] == user_id:
-            records.append({"task": task['title'],
-                            "completed": task['completed'],
-                            "username": user["username"]})
+            records.append({"task": task.get('title'),
+                            "completed": task.get('completed'),
+                            "username": user.get("username")})
     dict_file.update({str(user_id): records})
 
     filename = str(user_id) + '.json'
