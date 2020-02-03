@@ -13,17 +13,19 @@ if __name__ == '__main__':
     todos = requests.get(URL + 'todos').json()
     user_id = requests.get(URL_TODO).json().get('id')
     user = requests.get(URL_USERS + str(user_id)).json()
-    
+
     for task in todos:
         if task['userId'] == user_id:
             total += 1
             if task['completed']:
                 tasks_done.append(task['title'])
                 done += 1
-    
+
     for task in todos:
         if task['userId'] == user_id:
-            records.append({"task": task['title'], "completed": task['completed'], "username": user["name"]})
+            records.append({"task": task['title'],
+                            "completed": task['completed'],
+                            "username": user["username"]})
     dict_file.update({str(user_id): records})
 
     filename = str(user_id) + '.json'
