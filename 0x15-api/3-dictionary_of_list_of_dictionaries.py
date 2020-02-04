@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""dict list of dicts """
+"""dict list of dicts. """
 import json
 import requests
 from sys import argv
@@ -18,9 +18,9 @@ if __name__ == '__main__':
         task_user = requests.get(URL_TODO + '?userId=' + str(idx)).json()
         userResponse = requests.get(URL_USERS + str(idx)).json()
         for task in task_user:
-            records.append({"task": task.get('title'), "completed":
-                            task.get('completed'),
-                            "username": userResponse.get('username')})
+            records.append({"username": userResponse.get('username'),
+                            "task": task.get('title'),
+                            "completed": task.get('completed')})
         user_dict.update({str(idx): records})
         idx += 1
 
