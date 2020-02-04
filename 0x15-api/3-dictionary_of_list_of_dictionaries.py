@@ -6,8 +6,7 @@ from sys import argv
 
 if __name__ == '__main__':
     URL = 'https://jsonplaceholder.typicode.com/'
-    idx = 1
-    dict_file, records = {}, []
+    records = []
     user_dict = {}
     URL_TODO = URL + 'todos/'
     URL_USERS = URL + 'users/'
@@ -15,14 +14,15 @@ if __name__ == '__main__':
     users = requests.get(URL_USERS).json()
 
     for user in users:
-        task_user = requests.get(URL_TODO + '?userId=' + str(user.get('id'))).json()
-        userResponse = requests.get(URL_USERS + str(idx)).json()
+        task_user = requests.get(URL_TODO + '?userId=' +
+                                 str(user.get('id'))).json()
+        userResponse = requests.get(URL_USERS + str(user.get('id'))).json()
         for task in task_user:
             records.append({"username": userResponse.get('username'),
                             "task": task.get('title'),
                             "completed": task.get('completed')})
         user_dict.update({str(user.get('id')): records})
-        idx += 1
+        records = []
 
     filename = "todo_all_employees.json"
     with open(filename, 'w', encoding="utf-8") as jsonfile:
