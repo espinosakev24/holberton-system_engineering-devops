@@ -12,16 +12,16 @@ if __name__ == '__main__':
     URL_TODO = URL + 'todos/'
     URL_USERS = URL + 'users/'
     todos = requests.get(URL_TODO).json()
-    users = requests.get(URL_USERS)
+    users = requests.get(URL_USERS).json()
 
-    while idx <= 10:
-        task_user = requests.get(URL_TODO + '?userId=' + str(idx)).json()
+    for user in users:
+        task_user = requests.get(URL_TODO + '?userId=' + str(user.get('id'))).json()
         userResponse = requests.get(URL_USERS + str(idx)).json()
         for task in task_user:
             records.append({"username": userResponse.get('username'),
                             "task": task.get('title'),
                             "completed": task.get('completed')})
-        user_dict.update({str(idx): records})
+        user_dict.update({str(user.get('id')): records})
         idx += 1
 
     filename = "todo_all_employees.json"
